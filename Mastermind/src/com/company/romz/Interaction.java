@@ -1,23 +1,40 @@
 package com.company.romz;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Interaction {
-    int gameChoice;
-    private Scanner sc = new Scanner(System.in);
+    //Attributes
+    
+    private int gameChoice;
 
-    int GameChoice() {
-        System.out.println("A quel Jeu souhaitez vous jouer ?");
-        System.out.println("1 - Mode Challenger (Essayez de trouver la combinaison de l'Ordinateur");
-        System.out.println("2 - Mode défenseur (Jouez contre l'Ordinateur qui doit trouver votre combinaison)");
-        System.out.println("3 - Mode duel (Jouez une partie en Joueur contre Joueur en jouant tour a tour");
+    //Methods
 
-        this.gameChoice = sc.nextInt();
-        return gameChoice;
-    }
+    int GameChoice()
+    {
 
-    void StartGame(int choice) {
-        switch (choice) {
+        if (gameChoice > 3 || gameChoice < 1)
+        {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("A quel Jeu souhaitez vous jouer ?");
+                System.out.println("1 - Mode Challenger (Essayez de trouver la combinaison de l'Ordinateur");
+                System.out.println("2 - Mode défenseur (Jouez contre l'Ordinateur qui doit trouver votre combinaison)");
+                System.out.println("3 - Mode duel (Jouez une partie en Joueur contre Joueur en jouant tour a tour");
+
+                gameChoice = sc.nextInt();
+
+                }catch (InputMismatchException error) {
+                System.out.println("Ceci n'est pas un chiffre !");
+            }
+        }
+            return gameChoice;
+        }
+
+    void StartGame( int choice)
+    {
+        switch (choice)
+        {
 
             case 1:
                 System.out.println("MODE CHALLENGER");
@@ -39,4 +56,10 @@ class Interaction {
         }
 
     }
+
+    //Guetters and Setters
+
+    public int getGameChoice(){return gameChoice; }
+
+    public void setGameChoice(int gameChoice){this.gameChoice = gameChoice;}
 }
